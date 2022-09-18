@@ -1,0 +1,41 @@
+[versions]
+androidx-activity-compose = "1.5.1"
+coroutines = "1.6.4"
+decompose = "1.0.0-alpha-04"
+decomposeJetbrainsComposeExtensions = "1.0.0-alpha-04-native-compose"
+gradleDependencyUpdate = "0.42.0"
+gradlePlugin = "7.2.2"
+grpc-js = "1.7.0"
+grpc-js-protoLoader = "0.7.2"
+jetbrains-compose = "1.2.0-alpha01-dev753"
+jetpack-compose = "1.2.1"
+jetpack-compose-material3 = "1.0.0-beta02"
+kotlin = "1.7.0"
+mviKotlin = "3.0.2"
+wire = "4.4.1"
+
+[libraries]
+androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activity-compose" }
+decompose = { module = "com.arkivanov.decompose:decompose", version.ref = "decompose" }
+decompose-jetbrainsComposeExtensions = { module = "com.arkivanov.decompose:extensions-compose-jetbrains", version.ref = "decomposeJetbrainsComposeExtensions" }
+jetpack-compose-ui = { module = "androidx.compose.ui:ui", version.ref = "jetpack-compose" }
+jetpack-compose-material3 = { module = "androidx.compose.material3:material3", version.ref = "jetpack-compose-material3" }
+kotlin-gradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+kotlinXCoroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
+kotlinXCoroutines-swing = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-swing", version.ref = "coroutines" }
+mviKotlin = { module = "com.arkivanov.mvikotlin:mvikotlin", version.ref = "mviKotlin" }
+mviKotlin-coroutineExtension = { module = "com.arkivanov.mvikotlin:mvikotlin-extensions-coroutines", version.ref = "mviKotlin" }
+mviKotlin-main = { module = "com.arkivanov.mvikotlin:mvikotlin-main", version.ref = "mviKotlin" }
+mviKotlin-rx = { module = "com.arkivanov.mvikotlin:rx", version.ref = "mviKotlin" }
+wire-grpcClient = { module = "com.squareup.wire:wire-grpc-client", version.ref = "wire" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "gradlePlugin" }
+android-library = { id = "com.android.library", version.ref = "gradlePlugin" }
+gradleDependencyUpdate = { id = "com.github.ben-manes.versions", version.ref = "gradleDependencyUpdate" }
+jetbrains-compose = { id = "org.jetbrains.compose", version.ref = "jetbrains-compose" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin-js = { id = "org.jetbrains.kotlin.js", version.ref = "kotlin" }
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+wire = { id = "com.squareup.wire", version.ref = "wire" }
