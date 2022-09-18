@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
-    <bytecodeTargetLevel target="1.7" />
+    <bytecodeTargetLevel target="11">
+      <module name="Poet_Kotlin_Multiplatform_Sample.protos.commonMain" target="1.8" />
+      <module name="Poet_Kotlin_Multiplatform_Sample.protos.commonTest" target="1.8" />
+      <module name="Poet_Kotlin_Multiplatform_Sample.protos.jvmMain" target="1.8" />
+      <module name="Poet_Kotlin_Multiplatform_Sample.protos.jvmTest" target="1.8" />
+      <module name="PoetKotlinMultiplatformSample.compose.commonJvmAndroid" target="11" />
+      <module name="PoetKotlinMultiplatformSample.compose.commonMain" target="11" />
+      <module name="PoetKotlinMultiplatformSample.compose.commonTest" target="11" />
+      <module name="PoetKotlinMultiplatformSample.compose.jvmMain" target="11" />
+      <module name="PoetKotlinMultiplatformSample.compose.jvmTest" target="11" />
+      <module name="PoetKotlinMultiplatformSample.desktop.commonMain" target="1.8" />
+      <module name="PoetKotlinMultiplatformSample.desktop.commonTest" target="1.8" />
+      <module name="PoetKotlinMultiplatformSample.desktop.jvmMain" target="1.8" />
+      <module name="PoetKotlinMultiplatformSample.desktop.jvmTest" target="1.8" />
+      <module name="PoetKotlinMultiplatformSample.multiplatform_client.commonMain" target="1.8" />
+      <module name="PoetKotlinMultiplatformSample.multiplatform_client.commonTest" target="1.8" />
+      <module name="PoetKotlinMultiplatformSample.multiplatform_client.jvmMain" target="1.8" />
+      <module name="PoetKotlinMultiplatformSample.multiplatform_client.jvmTest" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

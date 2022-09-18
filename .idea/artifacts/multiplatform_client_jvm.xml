@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="multiplatform_client-jvm">
+    <output-path>$PROJECT_DIR$/multiplatform_client/build/libs</output-path>
+    <root id="archive" name="multiplatform_client-jvm.jar">
+      <element id="module-output" name="PoetKotlinMultiplatformSample.multiplatform_client.jvmMain" />
+    </root>
+  </artifact>
+</component>
