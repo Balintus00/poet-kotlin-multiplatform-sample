@@ -25,7 +25,7 @@ This project will be developed further into a more complex, but still simple Kot
 - on localhost without proxy for web: `gradlew backend:nodeRun`
 - on docker with proxy for web: `docker compose up --build`
 
-3, After this the Android and Desktop clients should work:
+3, After this the Android, Desktop and Web clients should work:
 - Run the Android application on emulator
 - Run the Desktop application: `gradlew desktop:run`
 - Run the Web application: `gradlew web:browserRun`
