@@ -12,7 +12,7 @@ actual class HelloWorldGrpcClient {
 
     private val _grpcClient = GrpcClient.Builder()
         .client(OkHttpClient.Builder().protocols(listOf(Protocol.H2_PRIOR_KNOWLEDGE)).build())
-        .baseUrl("http://10.0.2.2:50051")
+        .baseUrl("$GRPC_SERVICE_URL_PROTOCOL://$GRPC_SERVICE_BASE_URL:$GRPC_SERVICE_PORT")
         .build()
         .create(HelloWorldServiceClient::class)
 
@@ -25,5 +25,11 @@ actual class HelloWorldGrpcClient {
         } catch (cancellationException: CancellationException) {
             "CANCELLATION EXCEPTION: ${cancellationException.message}"
         }
+    }
+
+    companion object {
+        private const val GRPC_SERVICE_BASE_URL = "10.0.2.2"
+        private const val GRPC_SERVICE_PORT = "3001"
+        private const val GRPC_SERVICE_URL_PROTOCOL = "http"
     }
 }
