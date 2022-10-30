@@ -1,6 +1,6 @@
 package hu.bme.aut.ixnoyb.poetkotlinmultiplatformsample.backend
 
-import hu.bme.aut.ixnoyb.poetkotlinmultiplatformsample.backend.kotlinwrappers.Server
+import hu.bme.aut.ixnoyb.poetkotlinmultiplatformsample.backend.kotlinWrappers.Server
 
 external fun require(name: String): dynamic
 
@@ -25,7 +25,7 @@ fun main() {
     }
 
     server.addService(packageObject.HelloWorldService.service, serviceObject)
-    server.bindAsync("0.0.0.0:8080", grpc.ServerCredentials.createInsecure()) {
+    server.bindAsync("0.0.0.0:50051", grpc.ServerCredentials.createInsecure()) {
         println("Starting server...")
         server.start()
         println("Server started!")
