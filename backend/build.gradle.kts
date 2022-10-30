@@ -14,8 +14,3 @@ dependencies {
     implementation(npm("@grpc/grpc-js", "1.7.0"))
     implementation(npm("@grpc/proto-loader", "0.7.2"))
 }
-
-rootProject.plugins.withType<org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootPlugin> {
-    rootProject.the<org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension>().download =
-        (System.getenv("USE_PREINSTALLED_NODE_JS") ?: "") != "FALSE"
-}
