@@ -16,7 +16,6 @@
             <option value="$PROJECT_DIR$/desktop" />
             <option value="$PROJECT_DIR$/multiplatform_client" />
             <option value="$PROJECT_DIR$/protos" />
-            <option value="$PROJECT_DIR$/web" />
           </set>
         </option>
       </GradleProjectSettings>
