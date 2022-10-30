@@ -12,22 +12,14 @@ kotlin {
 
     sourceSets {
         @Suppress("UNUSED_VARIABLE")
-        val androidMain by getting {
-            dependencies {
-                implementation(libs.jetpack.compose.material3)
-            }
-        }
-
-        @Suppress("UNUSED_VARIABLE")
         val commonMain by getting {
             dependencies {
                 api(project(":multiplatform_client"))
-                api(libs.decompose.jetbrainsComposeExtensions)
                 implementation(compose.runtime)
                 implementation(compose.foundation)
                 implementation(compose.material3)
-                implementation(compose.preview)
-                implementation(compose.uiTooling)
+                implementation(libs.decompose)
+                implementation(libs.decompose.jetbrainsComposeExtensions)
             }
         }
     }
@@ -54,6 +46,10 @@ android {
         named("main") {
             manifest.srcFile("src/androidMain/AndroidManifest.xml")
             res.srcDirs("src/androidMain/res")
+
+            dependencies {
+                implementation(libs.jetpack.compose.material3)
+            }
         }
     }
 }

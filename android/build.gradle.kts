@@ -50,7 +50,9 @@ android {
 dependencies {
     implementation(project(":compose"))
     implementation(libs.androidx.activity.compose)
+    implementation(libs.decompose)
     implementation(libs.jetpack.compose.material3)
     implementation(libs.jetpack.compose.ui)
+    implementation(libs.mviKotlin)
     implementation(libs.mviKotlin.main)
 }

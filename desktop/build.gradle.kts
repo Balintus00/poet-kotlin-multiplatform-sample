@@ -14,7 +14,10 @@ kotlin {
             dependencies {
                 implementation(project(":compose"))
                 implementation(compose.desktop.currentOs)
+                implementation(libs.decompose)
+                implementation(libs.decompose.jetbrainsComposeExtensions)
                 implementation(libs.kotlinXCoroutines.swing)
+                implementation(libs.mviKotlin)
                 implementation(libs.mviKotlin.main)
             }
         }
