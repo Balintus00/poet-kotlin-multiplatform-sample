@@ -7,15 +7,15 @@ plugins {
 kotlin {
     android()
     jvm()
-    js(IR) { browser() }
+    //js(IR) { browser() } TODO web client will be added after it will be possible to use material3 web components
 
     sourceSets {
         @Suppress("UNUSED_VARIABLE")
         val commonMain by getting {
             dependencies {
-                api(libs.decompose)
-                api(libs.mviKotlin)
+                implementation(libs.decompose)
                 implementation(libs.kotlinXCoroutines.core)
+                implementation(libs.mviKotlin)
                 implementation(libs.mviKotlin.coroutineExtension)
                 implementation(libs.mviKotlin.rx)
             }
@@ -26,14 +26,6 @@ kotlin {
             dependencies {
                 implementation(project(":protos"))
                 implementation(libs.wire.grpcClient)
-            }
-        }
-
-        @Suppress("UNUSED_VARIABLE")
-        val jsMain by getting {
-            dependencies {
-                val grpcWebClientPath = rootProject.projectDir.resolve("grpc_web_client_poet").canonicalPath
-                implementation(npm("grpc_web_client_poet", "file:$grpcWebClientPath"))
             }
         }
 
