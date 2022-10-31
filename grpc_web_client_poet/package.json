@@ -1,0 +1,15 @@
+{
+  "name": "grpc_web_client_poet",
+  "version": "1.0.0",
+  "description": "",
+  "main": "poet_grpc_web_pb.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Balint Traxler (IXNOYB)",
+  "license": "ISC",
+  "dependencies": {
+    "google-protobuf": "^3.21.2",
+    "grpc-web": "^1.4.1"
+  }
+}
