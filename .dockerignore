@@ -1,0 +1,13 @@
+*/.*
+
+*.iml
+gradle/wrapper/*
+
+build/*
+*/build/*
+
+android/*
+compose/*
+desktop/*
+multiplatform_client/*
+web/*
