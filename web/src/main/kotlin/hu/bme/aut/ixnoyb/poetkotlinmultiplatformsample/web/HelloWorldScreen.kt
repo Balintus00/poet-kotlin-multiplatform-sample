@@ -14,6 +14,22 @@ import org.jetbrains.compose.web.dom.Text
 
 @Composable
 internal fun HelloWorldScreen(component: HelloWorldComponent) {
+    val helloWorldState by component.helloWorldState.subscribeAsState()
+
+    HelloWorldContent(
+        isLoading = helloWorldState.isLoading,
+        greetedName = helloWorldState.greetedName,
+        greetNameAction = component::greetName,
+    )
+}
+
+@Composable
+@OptIn(KMDCInternalAPI::class)
+private fun HelloWorldContent(
+    isLoading: Boolean,
+    greetedName: String,
+    greetNameAction: (name: String) -> Unit,
+) {
     MDCTopAppBar {
         TopAppBar {
             Row {
@@ -33,71 +49,55 @@ internal fun HelloWorldScreen(component: HelloWorldComponent) {
                 }
             }
         ) {
-            val helloWorldState by component.helloWorldState.subscribeAsState()
+            Section(
+                attrs = {
+                    style {
+                        alignItems(AlignItems.Center)
+                        display(DisplayStyle.Flex)
+                        justifyContent(JustifyContent.Center)
+                        marginBottom(16.px)
+                    }
+                },
+            ) {
+                val helloWorldTextFieldId = rememberUniqueDomElementId()
 
-            HelloWorldContent(
-                isLoading = helloWorldState.isLoading,
-                greetedName = helloWorldState.greetedName,
-                greetNameAction = component::greetName,
-            )
+                FilledTextField(
+                    attrs = {
+                        attr("id", helloWorldTextFieldId)
+
+                        if (isLoading) {
+                            attr("disabled", "true")
+                        }
+
+                        style {
+                            marginRight(8.px)
+                        }
+                    },
+                )
+                FilledButton(
+                    attrs = {
+                        attr("label", "Greet")
+
+                        if (isLoading) {
+                            attr("disabled", "true")
+                        }
+
+                        onClick {
+                            greetNameAction((js("document.getElementById(helloWorldTextFieldId).value") as? String) ?: "")
+                        }
+                    },
+                )
+            }
+            Section(
+                attrs = {
+                    style {
+                        display(DisplayStyle.Flex)
+                        justifyContent(JustifyContent.Center)
+                    }
+                },
+            ) {
+                Text("Greeted name: ${greetedName.ifEmpty { "Nobody has been greeted yet!" }}")
+            }
         }
-    }
-}
-
-@Composable
-@OptIn(KMDCInternalAPI::class)
-private fun HelloWorldContent(
-    isLoading: Boolean,
-    greetedName: String,
-    greetNameAction: (name: String) -> Unit,
-) {
-    Section(
-        attrs = {
-            style {
-                alignItems(AlignItems.Center)
-                display(DisplayStyle.Flex)
-                justifyContent(JustifyContent.Center)
-                marginBottom(16.px)
-            }
-        },
-    ) {
-        val helloWorldTextFieldId = rememberUniqueDomElementId()
-
-        FilledTextField(
-            attrs = {
-                attr("id", helloWorldTextFieldId)
-
-                if (isLoading) {
-                    attr("disabled", "true")
-                }
-
-                style {
-                    marginRight(8.px)
-                }
-            },
-        )
-        FilledButton(
-            attrs = {
-                attr("label", "Greet")
-
-                if (isLoading) {
-                    attr("disabled", "true")
-                }
-
-                onClick {
-                    greetNameAction((js("document.getElementById(helloWorldTextFieldId).value") as? String) ?: "")
-                }
-            },
-        )
-    }
-    Section(
-        attrs = {
-            style {
-                display(DisplayStyle.Flex)
-                justifyContent(JustifyContent.Center)
-            }
-        },
-    ) {
-        Text("Greeted name: ${greetedName.ifEmpty { "Nobody has been greeted yet!" }}")
     }
 }
