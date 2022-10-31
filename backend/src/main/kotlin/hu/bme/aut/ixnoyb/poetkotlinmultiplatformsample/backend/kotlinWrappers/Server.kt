@@ -1,13 +1,13 @@
 @file:JsModule("@grpc/grpc-js")
 @file:JsNonModule
 
-package hu.bme.aut.ixnoyb.poetkotlinmultiplatformsample.backend.kotlinWrappers
+package hu.bme.aut.ixnoyb.poetkotlinmultiplatformsample.backend.kotlinwrappers
 
-open external class Server(options: Any? = definedExternally) : Any {
+open external class Server(options: dynamic = definedExternally) : Any {
 
-    open fun addService(service: Any, implementation: Any)
+    open fun addService(service: dynamic, implementation:dynamic)
 
-    open fun bindAsync(port: String, credentials: Any, callback: Any)
+    open fun bindAsync(port: String, credentials: dynamic, callback: dynamic)
 
     open fun start()
 }

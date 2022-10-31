@@ -19,35 +19,28 @@ class HelloWorldComponent(componentContext: ComponentContext, storeFactory: Stor
     private val store = instanceKeeper.getStore { HelloWorldStoreFactory(storeFactory).create() }
 
     val helloWorldState: Value<HelloWorldComponentState> = store.asValue().map {
-        HelloWorldComponentState(greetedName = it.greetedName, isLoading = it.isLoading, name = it.name)
+        HelloWorldComponentState(greetedName = it.greetedName, isLoading = it.isLoading)
     }
 
-    fun greetName() {
-        store.accept(GreetName)
-    }
-
-    fun setName(name: String) {
-        store.accept(SetName(name))
+    fun greetName(name: String) {
+        store.accept(GreetName(name))
     }
 }
 
 data class HelloWorldComponentState(
     val greetedName: String = "",
     val isLoading: Boolean = false,
-    val name: String = "",
 )
 
 internal interface HelloWorldStore : Store<Intent, State, Nothing> {
 
     sealed interface Intent {
-        object GreetName : Intent
-        data class SetName(val name: String) : Intent
+        data class GreetName(val name: String) : Intent
     }
 
     data class State(
         val greetedName: String = "",
         val isLoading: Boolean = false,
-        val name: String = "",
     )
 }
 
@@ -61,21 +54,6 @@ internal class HelloWorldStoreFactory(private val storeFactory: StoreFactory) {
             reducer = HelloWorldReducer,
         ) {}
 
-    private sealed interface Message {
-        data class GreetedName(val greetedName: String) : Message
-        data class Name(val name: String) : Message
-        object StartGreeting : Message
-    }
-
-    private object HelloWorldReducer : Reducer<State, Message> {
-        override fun State.reduce(msg: Message): State =
-            when (msg) {
-                is GreetedName -> copy(greetedName = msg.greetedName, isLoading = false)
-                is Name -> copy(name = msg.name)
-                is StartGreeting -> copy(isLoading = true)
-            }
-    }
-
     private class HelloWorldExecutor: CoroutineExecutor<Intent, Nothing, State, Message, Nothing>() {
 
         private val grpcClient: HelloWorldGrpcClient = HelloWorldGrpcClient()
@@ -87,16 +65,24 @@ internal class HelloWorldStoreFactory(private val storeFactory: StoreFactory) {
                     if (state.isLoading.not()) {
                         scope.launch {
                             dispatch(StartGreeting)
-                            dispatch(GreetedName(greetedName = grpcClient.sayHello(name = state.name)))
+                            dispatch(GreetedName(greetedName = grpcClient.sayHello(name = intent.name)))
                         }
-                    }
-                }
-                is SetName -> {
-                    if (state.isLoading.not()) {
-                        dispatch(Name(intent.name))
                     }
                 }
             }
         }
+    }
+
+    private sealed interface Message {
+        data class GreetedName(val greetedName: String) : Message
+        object StartGreeting : Message
+    }
+
+    private object HelloWorldReducer : Reducer<State, Message> {
+        override fun State.reduce(msg: Message): State =
+            when (msg) {
+                is GreetedName -> copy(greetedName = msg.greetedName, isLoading = false)
+                is StartGreeting -> copy(isLoading = true)
+            }
     }
 }
